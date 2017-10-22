@@ -1,0 +1,23 @@
+#include <iostream> 
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+	int a, i, N;
+	cin >> N;
+	for (i = 0; i<N; i++)
+	{
+		cin >> a;
+		if (a % 2 == 0)
+		{
+			cout << a << " Even" << endl;;
+		}
+		else
+		{
+			cout << a << " Odd" << endl;
+		}
+	}
+	system("pause");
+	return 0;
+}
