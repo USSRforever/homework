@@ -1,0 +1,21 @@
+#include <iostream> 
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+	int s = 0, n = 0, a;
+	do {
+		cin >> a;
+		if (a % 2 != 0) 
+		{
+			s += a;
+			n++;
+		}
+	} while (a != 0);
+	double d;
+	d = s / n;
+	cout <<"result " << d << endl;
+	system("pause");
+	return 0;
+}
