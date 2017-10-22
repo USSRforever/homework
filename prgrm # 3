@@ -1,0 +1,29 @@
+#include <iostream> 
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+	int x, n;
+	double y;
+
+	cout << "Input a number" << endl;
+	cin >> x >> n;
+	if (x < 0 || n < 0)
+		cout << "incorrect number(s)" << endl;
+	else
+	{
+		if (x - n == 0)
+			cout << "none" << endl;
+		else
+		{
+			y = (1 - n) / (x - n);
+			if (y - (int)y > 0)
+				cout << y << endl;
+			else
+				cout << "none" << endl;
+		}
+	}
+	system("pause");
+	return 0;
+}
