@@ -1,0 +1,79 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int min(double a, double b, double c)
+{
+	if (a < b)
+	{
+		if (a < c)
+			cout << "min. number is:" << a << endl;
+		else
+			cout << "min. number is:" << c << endl;
+	}
+	else
+	{
+		if (b < c)
+			cout << "min. number is:" << b << endl;
+		else
+			cout << "min. number is:" << c << endl;
+    }
+	return 0;
+}
+int max(double a, double b, double c)
+{
+	if (a > b)
+	{
+		if (a > c)
+			cout << "max. number is:" << a << endl;
+		else
+			cout << "max. number is:" << c << endl;
+	}
+	else
+	{
+		if (b > c)
+			cout << "max. number is:" << b << endl;
+		else
+			cout << "max. number is:" << c << endl;
+	}
+	return 0;
+}
+int avg(double a, double b, double c)
+{
+	double avg = 0;
+	
+	avg = (a + b + c) / 3;
+	cout << "averenge is:" << avg << endl;
+  return 0;
+}
+int med(double a, double b, double c)
+{
+	double med = b;
+
+	cout << "Med is:" << b << endl;
+	return 0;
+}
+void swap(double a, double b, double c)
+{
+	double z = 0, k = 0;
+	z = a;
+	a = c; 
+	k = b;
+	b = z;
+	c = k;
+	cout << "swap numbers:" <<endl << "a = " <<  a << endl;
+	cout << "b = " << b << endl;
+	cout << "c = " << c << endl;
+}
+int main()
+{
+	int a, b, c;
+
+	cin >> a >> b >> c;		
+	min(a, b, c);
+	max(a, b, c);
+	avg(a, b, c);
+	med(a, b, c);
+	swap(a, b, c);
+	system("pause");
+}
