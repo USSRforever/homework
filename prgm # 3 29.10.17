@@ -1,0 +1,23 @@
+#include "iostream" 
+#include <cstdlib> 
+
+using namespace std; 
+double power(double a, int b) { 
+double res = a; 
+while(b > 1) { 
+res *= a; 
+b--; 
+power(res, b); 
+} 
+return res; 
+} 
+
+int main() 
+{ 
+double a; 
+int b; 
+cin »a; 
+cin » b; 
+cout « power(a, b); 
+system("pause"); 
+}
