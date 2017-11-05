@@ -1,0 +1,126 @@
+//Напишите программу для работы с оценками за сессию студентов.
+#include <iostream>
+#include <cstdlib>
+#include <string>
+using namespace std;
+
+struct SNP // структура ФИО(Surname, Name, Patronymic => SNP).
+{
+	string name;
+	string surname;
+	string patronymic;
+};
+struct exam
+{
+	long int ex1, ex2, ex3, ex4, ex5, ex6;
+};
+void student(long int N, SNP * students)
+{
+	for (int i = 0;i < N;++i) 
+	{
+		cout << "student number " << i + 1 << ":" << endl;
+		cout << "Input full name this student: ";
+		cin>> students[i].name;
+		cout << "Now, input full surname this student: " ;
+		cin >> students[i].surname;
+		cout << "Input full patronymic this student: ";
+		cin >> students[i].patronymic;
+	}
+}
+int marks(long int N, SNP * students, int * mark_2, exam *mark, double *avg)
+{
+	int temp = 0;
+	long int a, b, c, d, e, f;
+
+	for (int i = 0; i < N; ++i)
+	{
+		cout << "Input a marks:" << endl;
+		cin >> a >> b >> c >> d >> e >> f;
+		mark[i] = { a, b, c, d, e, f };
+		avg[i] = (double)(a + b + c + d + e + f) / 6;
+		if (a == 2)
+			mark_2[i]++;
+		if (b == 2)
+			mark_2[i]++;
+		if (c == 2)
+			mark_2[i]++;
+		if (d == 2)
+			mark_2[i]++;
+		if (e == 2)
+			mark_2[i]++;
+		if (f == 2)
+			mark_2[i]++;
+	}for (int i = 0; i < N - 1; ++i)
+	{
+		for (int k = 0; k < N - 1 - i; ++k)
+		{
+			if (avg[k] > avg[k + 1])
+			{
+				temp = avg[k];
+				avg[k] = avg[k + 1];
+				avg[k + 1] = temp;
+			}
+		}
+	}
+	return 0;
+}
+void student_info(long int N, SNP * students, exam * mark, double * avg, int * mark_2, int SUM_dedect, int SUM_bad_guy, int SUM_good_guy) 
+{
+	double ALL_avg = 0;
+	int SUM_stipend = 0;
+	for (int i = 0; i < N; ++i)
+	{
+		cout << "Student " << students[i].surname << " " << students[i].name << " " << students[i].patronymic << " have average mark: " << avg[i] << "." << endl;
+		if (avg[i] >= 4 && mark_2[i] == 0)
+		{
+			cout << " and will get stipend." << endl;
+			SUM_stipend++;
+		}
+		else
+		{
+			if (avg[i] >= 3 && mark_2[i] == 0)
+				cout << " and will not get stipend." << endl;
+		}
+		cout << students[i].surname << " " << students[i].name << " have " << mark_2[i] << " bad marks. " << endl;
+		if (mark_2[i] <= 2 && mark_2[i] >= 1)
+		{
+			cout << students[i].surname << " " << students[i].name << " have " << mark_2[i] << "  debts." << endl;
+			SUM_dedect++;
+		}
+		if(mark_2[i] >= 2)
+		{
+			cout << students[i].surname << " " << students[i].name << " will be deduction." << endl;
+			SUM_bad_guy++;
+		}
+	}
+	for (int i = 2; i < N - 2; ++i)
+	  ALL_avg += avg[i];
+	ALL_avg /= (N - 4);
+	if (N > 4)
+		cout << "average of all students: " << ALL_avg << endl;
+	else
+		cout << "Not enough students for average" << endl;
+	cout << "quanity of guys with stipend: " << SUM_stipend << "." << endl;
+	cout << "quanity of deduction guys: " << SUM_bad_guy << "." <<endl;
+	cout << "quanity of guys with some debts: " << SUM_dedect << "." << endl;
+}
+int main()
+{
+    int N, i = 0, SUM_dedect = 0, SUM_bad_guy = 0, SUM_good_guy = 0;
+	cout << "Please, input quanity of students" << endl;
+	cin >> N;
+	exam *mark = new exam[N];
+	double *avg = new double[N];
+	SNP *students = new SNP[N];
+	int *mark_2 = new int[N];
+	while (i < N)
+	{
+		mark_2[i] = 0;
+		i++;
+	}
+	student(N, students);
+	marks(N, students, mark_2, mark, avg);
+	student_info(N, students, mark, avg, mark_2, SUM_bad_guy, SUM_dedect, SUM_good_guy);
+	system("pause");
+	return 0;
+}
