@@ -1,0 +1,20 @@
+//Напишите программу, которая подсчитывает, сколько раз в строке встретился символ ‘w’
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+	char word;
+	int sum = 0;
+	word = cin.get();
+	while (word != '\n')
+	{
+		if (word == 'w')
+			sum++;
+		word = cin.get();
+	}
+	cout << "quanity of 'w' is " << sum << "." <<  endl;
+	system("pause");
+	return 0;
+}
